@@ -1,8 +1,12 @@
 package controller;
 
+import model.Row;
 import model.Team;
 import utlls.Result;
 import utlls.Util;
+import view.controller.GameMenuController;
+
+import java.util.ArrayList;
 
 public class GameController {
 
@@ -11,6 +15,8 @@ public class GameController {
     private boolean isTeam1Turn ;
     private int roundTime;
     private int roundNumber;
+    private final int[] numCodes = new int[3];
+    private GameMenuController view;
 
     public Team getTeam1() {
         return team1;
@@ -48,7 +54,7 @@ public class GameController {
     public Result typeCodeInCell(int index , String code){
         if(index<0 || index>2)return new Result(false , "index is out of bound");
 
-        getTeamThisRound().getBoard().get(getTeamThisRound().getBoard().size()-1).getRows()[index].setCode(code);
+        getTeamThisRound().getMyLastCell().getRows()[index].setCode(code);
         return new Result(true , "your code has set successfully");
     }
 
@@ -67,16 +73,28 @@ public class GameController {
         else isTeam1Turn = true;
     }
 
-    private Result processAfterRound(){
-
+    private void processAfterRound(){
+        if(isMatchGuessByAnswer(getTeamThisRound())) getTeamThisRound().getMyLastCell().setScore(0);
+        else getTeamThisRound().getMyLastCell().setScore(-1);
+        if(isMatchGuessByAnswer(getTeamNextRound())) getTeamNextRound().getEnemyLastCell().setScore(1);
+        else getTeamNextRound().getEnemyLastCell().setScore(0);
     }
+
+    private boolean isMatchGuessByAnswer(Team team){
+        Row[] rows = getTeamThisRound().getMyLastCell().getRows();
+        for (int i = 0; i < rows.length; i++) {
+            if(rows[i].getGuess() != numCodes[i]) return false;
+        }
+        return true;
+    }
+
 
     public Result chooseNumCodeInCell(int index , int number){
         if(index<0 || index>2) return new Result(false , "index is out of bound");
-        if(number<1 || number>4) return new Result(false , "your numCode is invalid");
+        if(number<1 || number>4) return new Result(false , "your numCodes is invalid");
 
-        getTeamThisRound().getBoard().get(getTeamThisRound().getBoard().size()-1).getRows()[index].setGuess(number);
-        return new Result(true , "your numCode has set successfully");
+        getTeamThisRound().getMyLastCell().getRows()[index].setGuess(number);
+        return new Result(true , "your numCodes has set successfully");
     }
 
     public Result typeGuessWordInColumn(int index,String guess){
@@ -91,5 +109,23 @@ public class GameController {
 
     }
 
+    public int[] getNewNumCode(){
+        return numCodes;
+    }
 
+    private void generateAndSetNumCode(){
+       ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        for (Integer number : numbers) {
+            int random = Util.getRandom().nextInt() % 4;
+            Util.swapObjectInArrayList(numbers , numbers.indexOf(number) , random );
+        }
+
+        for (int i = 0; i < numCodes.length; i++) {
+            numCodes[i] = numbers.get(i);
+        }
+    }
 }
