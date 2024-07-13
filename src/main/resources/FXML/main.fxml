@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
+   <children>
+      <VBox alignment="CENTER" layoutX="160.0" layoutY="304.0" prefHeight="277.0" prefWidth="171.0" spacing="80.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="304.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#clickOnNewGameButton" scaleX="2.0" scaleY="2.0" text="بازی جدید" />
+            <Button mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="سابقه" />
+         </children>
+      </VBox>
+      <TextField alignment="CENTER" layoutX="103.0" layoutY="131.0" prefHeight="119.0" prefWidth="286.0" text="دی کریم">
+         <font>
+            <Font name="Kalameh Black" size="63.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

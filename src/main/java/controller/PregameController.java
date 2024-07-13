@@ -23,9 +23,9 @@ public class PregameController {
         else isTeam1Turn = true;
 
     }
-    public Result startGame(){
-
-    }
+//    public Result startGame(){
+//
+//    }
 
     public Team getTeamThisTurn(){
         if(isTeam1Turn) return gameController.getTeam1();

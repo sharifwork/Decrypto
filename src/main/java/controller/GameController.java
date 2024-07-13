@@ -43,7 +43,8 @@ public class GameController {
     }
 
     public Result gameSetup (){
-
+        assigningRandomTurn();
+        return new Result(true , "setup done");
     }
 
     private void assigningRandomTurn(){
@@ -104,10 +105,10 @@ public class GameController {
         getTeamThisRound().getColumns()[index].getCodes().add(guess);
         return new Result(true, "word inserted successfully");
     }
-
-    public Result processGameOver(){
-
-    }
+//
+//    public Result processGameOver(){
+//
+//    }
 
     public int[] getNewNumCode(){
         return numCodes;
