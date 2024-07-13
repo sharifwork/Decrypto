@@ -5,10 +5,9 @@ import utlls.Result;
 import utlls.Util;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class PregameController {
-    private boolean isTurnTeam1 = true;
+    private boolean isTeam1Turn = true;
     private GameController gameController;
 
     public PregameController(GameController gameController) {
@@ -20,8 +19,8 @@ public class PregameController {
     }
 
     public void changeTurn() {
-        if (isTurnTeam1) isTurnTeam1 = false;
-        else isTurnTeam1 = true;
+        if (isTeam1Turn) isTeam1Turn = false;
+        else isTeam1Turn = true;
 
     }
     public Result startGame(){
@@ -29,7 +28,7 @@ public class PregameController {
     }
 
     public Team getTeamThisTurn(){
-        if(isTurnTeam1) return gameController.getTeam1();
+        if(isTeam1Turn) return gameController.getTeam1();
         else return gameController.getTeam2();
     }
 
