@@ -1,4 +1,4 @@
-package utills;
+package utlls;
 
 public class Result {
     private boolean isSuccessful;

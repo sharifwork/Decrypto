@@ -11,9 +11,8 @@ public class Team {
     private Column[] columns = new Column[4];
     private int score;
 
-    public Team(String name, ArrayList<String> players) {
+    public void setName(String name) {
         this.name = name;
-        this.players = players;
     }
 
     public String getName() {
